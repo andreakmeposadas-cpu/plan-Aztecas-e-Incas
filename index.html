@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra Digital - Colegio Montano - Dos grandes imperios de América: aztecas e incas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Configuración del tema con la paleta de colores institucional del Colegio Montano -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montanoAzul: '#1269A8',
+                        montanoAmarillo: '#F7D615',
+                        montanoVerdeGris: '#54887D',
+                        montanoAzulClaro: '#88B5C7',
+                        montanoVerdeOliva: '#A6B046',
+                        montanoFondo: '#F2F5E9',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Verdana', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F2F5E9;
+            color: #1a202c;
+        }
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: white;
+            border-bottom: 4px solid #F7D615;
+            font-weight: bold;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 600px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+
+    <!-- ENCABEZADO INSTITUCIONAL -->
+    <header class="bg-montanoAzul text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo e Identidad Institucional -->
+            <div class="flex items-center space-x-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
+                     alt="Logo Colegio Montano" 
+                     class="h-12 w-auto bg-white p-1 rounded-md shadow"
+                     onerror="this.src='https://placehold.co/120x50/1269A8/FFFFFF?text=MONTANO'">
+                <div>
+                    <h1 class="text-xl font-bold text-montanoAmarillo leading-tight">Colegio Montano</h1>
+                    <p class="text-xs text-gray-200">Pizarra Digital Interactiva - Plan Diario (Duración total: 50 minutos)</p>
+                </div>
+            </div>
+
+            <!-- Datos Informativos de la Clase (SIN número de plan) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs bg-white/10 p-2 rounded-lg border border-white/20">
+                <div><span class="font-semibold text-montanoAmarillo">Curso:</span> Ciencias Sociales</div>
+                <div><span class="font-semibold text-montanoAmarillo">Grado:</span> 5to Primaria</div>
+                <div><span class="font-semibold text-montanoAmarillo">Tema:</span> Aztecas e Incas</div>
+                <div><span class="font-semibold text-montanoAmarillo">Docente:</span> Andrea Aguilar</div>
+                <div><span class="font-semibold text-montanoAmarillo">Unidad:</span> 1</div>
+                <div><span class="font-semibold text-montanoAmarillo">Fecha:</span> Enero 2027</div>
+                <div><span class="font-semibold text-montanoAmarillo">Duración:</span> 50 Minutos</div>
+                <div><span class="font-semibold text-montanoAmarillo">Modelo:</span> Hábitos Montano</div>
+            </div>
+
+            <!-- Botón para Pantalla Completa -->
+            <button onclick="toggleFullScreen()" class="bg-montanoAmarillo hover:bg-yellow-400 text-montanoAzul font-bold px-3 py-2 rounded-lg flex items-center gap-2 shadow transition text-sm">
+                <i class="fa-solid fa-expand"></i>
+                <span class="hidden sm:inline">Pantalla Completa</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MARCO PEDAGÓGICO INSTITUCIONAL (ENFOQUE, CNB Y HÁBITOS) -->
+    <section class="max-w-7xl mx-auto w-full p-4 my-2">
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-montanoVerdeGris p-4 grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-montanoVerdeOliva"></i> Competencia CNB & Logro
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Competencia:</strong> Compara la estructura política, social, económica y los avances tecnológicos de los grandes imperios azteca e inca en el continente americano (CNB 5to Primaria).</p>
+                <p class="mt-1 text-gray-700"><strong>Logro:</strong> Contrasta las características principales del Imperio Azteca (Tenochtitlan, chinampas) y del Imperio Inca (Tawantinsuyu, terrazas agrícolas, quipus y Machu Picchu).</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-montanoVerdeOliva"></i> Competencias Clave & Hábitos
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Competencias Clave:</strong> Pensamiento histórico comparativo, análisis de adaptación geográfica, pensamiento crítico y trabajo colaborativo.</p>
+                <p class="mt-1 text-gray-700"><strong>Hábitos Montano:</strong> <span class="bg-montanoAmarillo/30 px-1 rounded font-semibold">Comenzar con un fin en mente</span> (comprender el ingenio de la antigüedad) y <span class="bg-montanoAmarillo/30 px-1 rounded font-semibold">Sinergizar</span> (trabajar en equipo).</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-box-archive text-montanoVerdeOliva"></i> Recursos & Momentos Eval.
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Recursos:</strong> Mapa de imperios americanos, diagramas de chinampas y terrazas, cuadernos, marcadores y pizarra digital.</p>
+                <p class="mt-1 text-gray-700"><strong>Evaluación:</strong> Inicial (Dinámica "El Águila sobre el Nopal vs. La Llama de los Andes"), Formativa (Cuadro comparativo con solución desplegable), Sumativa (Rúbrica de la Plenaria de Historiadores).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVEGACIÓN DE PESTAÑAS (SECUENCIA DIDÁCTICA - 50 MINUTOS) -->
+    <main class="max-w-7xl mx-auto w-full flex-grow px-4 pb-8">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+            <!-- Barra de Pestañas -->
+            <div class="flex flex-wrap border-b border-gray-200 bg-gray-50 text-sm md:text-base">
+                <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoAzul flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-lightbulb text-montanoAmarillo"></i> I) Introducción Motivante (5 min)
+                </button>
+                <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoAzul flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-user-pen text-montanoAzulClaro"></i> II) Trabajo Individual (15 min)
+                </button>
+                <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoVerdeGris flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-people-group text-montanoVerdeGris"></i> III) Trabajo Cooperativo (18 min)
+                </button>
+                <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoVerdeOliva flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-comments text-montanoVerdeOliva"></i> IV) Plenaria & Evaluación (12 min)
+                </button>
+            </div>
+
+            <!-- CONTENIDO DE LAS PESTAÑAS -->
+            <div class="p-6">
+
+                <!-- PESTAÑA I: INTRODUCCIÓN MOTIVANTE (5 MINUTOS) -->
+                <div id="tab1" class="tab-content block space-y-6">
+                    <div class="bg-yellow-50 border-l-4 border-montanoAmarillo p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-montanoAmarillo"></i> Dinámica Express: "El Águila de Texcoco vs. El Sol de los Andes" (5 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Exploración visual sobre la majestuosidad geográfica y tecnológica de los dos imperios más vastos de América previa a la llegada europea.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3">
+                            <h3 class="font-semibold text-montanoAzul flex items-center gap-2">
+                                <i class="fa-solid fa-earth-americas text-montanoVerdeGris"></i> Preguntas Desafío:
+                            </h3>
+                            <div class="p-3 bg-white rounded border border-gray-200 text-sm space-y-2">
+                                <p class="text-gray-800"><strong>1. ¿Cómo construyeron los aztecas una capital flotante sobre un lago?</strong> (Tenochtitlan en el Lago de Texcoco con huertos flotantes o chinampas).</p>
+                                <p class="text-gray-800"><strong>2. ¿Cómo lograron los incas cultivar en las cumbres nevadas de los Andes y comunicarse a lo largo de 5,000 km?</strong> (Terrazas agrícolas y el camino del Qhapaq Ñan con chasquis).</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-montanoAzul/5 p-4 rounded-lg border border-montanoAzul/20 space-y-3">
+                            <h3 class="font-semibold text-montanoAzul flex items-center gap-2">
+                                <i class="fa-solid fa-quote-left text-montanoAzulClaro"></i> Concepto Clave:
+                            </h3>
+                            <div class="p-4 bg-white rounded shadow-sm border-l-4 border-montanoAzul text-sm text-gray-700 space-y-2">
+                                <p class="font-bold text-montanoAzul">Imperios Prehispánicos Continentales</p>
+                                <p>Mientras los <strong>Aztecas (Mexicas)</strong> dominaron el centro de México con un imperio militarista y comercial, los <strong>Incas (Tawantinsuyu)</strong> unificaron la cordillera de los Andes desde Colombia hasta Chile con un Estado centralizado y redistributivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA II: TRABAJO INDIVIDUAL (15 MINUTOS) -->
+                <div id="tab2" class="tab-content hidden space-y-6">
+                    <div class="bg-blue-50 border-l-4 border-montanoAzulClaro p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Guía Didáctica: Análisis Comparativo Aztecas vs. Incas
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Estudio de las características fundamentales de ambos imperios en el cuaderno.
+                        </p>
+                    </div>
+
+                    <!-- TARJETAS COMPARATIVAS DE IMPERIOS -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                        <!-- Imperio Azteca -->
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoAzul space-y-2">
+                            <h4 class="font-bold text-montanoAzul text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-[#1269A8] fa-sun"></i> Imperio Azteca (Mexica)
+                            </h4>
+                            <ul class="space-y-1 text-gray-600 text-xs">
+                                <li><strong>Ubicación:</strong> Valle de México (Capital: Tenochtitlan).</li>
+                                <li><strong>Gobernante:</strong> Huey Tlatoani ("Gran Orador").</li>
+                                <li><strong>Técnica Agrícola:</strong> <em>Chinampas</em> (islas artificiales flotantes en lagos).</li>
+                                <li><strong>Escritura y Registro:</strong> Códices pictográficos y calendario solar.</li>
+                                <li><strong>Idioma:</strong> Náhuatl.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Imperio Inca -->
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoAmarillo space-y-2">
+                            <h4 class="font-bold text-montanoAzul text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-[#F7D615] fa-mountain"></i> Imperio Inca (Tawantinsuyu)
+                            </h4>
+                            <ul class="space-y-1 text-gray-600 text-xs">
+                                <li><strong>Ubicación:</strong> Cordillera de los Andes (Capital: Cusco).</li>
+                                <li><strong>Gobernante:</strong> El Sapa Inca (Considerado hijo del Sol / Inti).</li>
+                                <li><strong>Técnica Agrícola:</strong> <em>Terrazas o andenes</em> en las laderas de las montañas.</li>
+                                <li><strong>Sistema de Contabilidad:</strong> <em>Quipus</em> (cordones de nudos). Mensajeros: <em>Chasquis</em>.</li>
+                                <li><strong>Idioma:</strong> Quechua.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio Práctico Individual -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm space-y-3">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base">Ejercicio Práctico: Clasificación de Elementos (En tu cuaderno)</h3>
+                        <p class="text-sm text-gray-600">Escribe en tu cuaderno si la afirmación corresponde a los <strong>Aztecas (A)</strong> o a los <strong>Incas (I)</strong>:</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
+                            <div class="p-2 bg-gray-50 rounded border">1. Construyeron una impresionante ciudadela en la cima de la montaña llamada Machu Picchu.</div>
+                            <div class="p-2 bg-gray-50 rounded border">2. Utilizaron las chinampas sobre el lago de Texcoco para cultivar maíz y calabaza.</div>
+                            <div class="p-2 bg-gray-50 rounded border">3. Registraban datos numéricos y cosechas utilizando un sistema de cuerdas con nudos llamado Quipu.</div>
+                            <div class="p-2 bg-gray-50 rounded border">4. Su máximo gobernante era llamado el Huey Tlatoani y hablaban el idioma Náhuatl.</div>
+                            <div class="p-2 bg-gray-50 rounded border">5. Tenían mensajeros corredores llamados Chasquis que recorrían el gran camino del Qhapaq Ñan.</div>
+                        </div>
+
+                        <!-- Botón Desplegable con Solución -->
+                        <div class="pt-2">
+                            <button onclick="toggleAccordion('solucion-imperios')" class="bg-montanoAzul text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-montanoVerdeGris transition flex items-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Desplegar Verificación de Respuestas
+                            </button>
+                            <div id="solucion-imperios" class="accordion-content mt-2 bg-green-50 border border-green-200 p-3 rounded-md text-sm text-gray-700 space-y-2">
+                                <p><strong>Respuestas Correctas:</strong></p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li><strong>1. Machu Picchu:</strong> Imperio Inca (I).</li>
+                                    <li><strong>2. Chinampas en Texcoco:</strong> Imperio Azteca (A).</li>
+                                    <li><strong>3. Sistema de Quipus:</strong> Imperio Inca (I).</li>
+                                    <li><strong>4. Huey Tlatoani e idioma Náhuatl:</strong> Imperio Azteca (A).</li>
+                                    <li><strong>5. Mensajeros Chasquis:</strong> Imperio Inca (I).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA III: TRABAJO COOPERATIVO (18 MINUTOS) -->
+                <div id="tab3" class="tab-content hidden space-y-6">
+                    <div class="bg-green-50 border-l-4 border-montanoVerdeGris p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Taller en Equipos: "El Panel de los Dos Imperios" (18 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Análisis en equipos de 4 integrantes aplicando los hábitos Montano: <strong>Comenzar con un fin en mente</strong> y <strong>Sinergizar</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Roles en el Equipo -->
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAzul/10 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">1</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Coordinador/a del Imperio</h4>
+                            <p class="text-xs text-gray-600 mt-1">Dirige la mesa y distribuye las tareas de investigación.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAmarillo/30 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">2</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Ingeniero/a Agrícola</h4>
+                            <p class="text-xs text-gray-600 mt-1">Explica la innovación técnica (Chinampas o Terrazas andinas).</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoVerdeGris/20 text-montanoVerdeGris rounded-full flex items-center justify-center font-bold mb-1 text-sm">3</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Diseñador/a de Diagrama</h4>
+                            <p class="text-xs text-gray-600 mt-1">Elabora un cuadro comparativo visual de ambos imperios.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAzulClaro/30 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">4</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Vocero/a Embajador</h4>
+                            <p class="text-xs text-gray-600 mt-1">Sintetiza y expone las conclusiones en la plenaria.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reto del Trabajo Cooperativo -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm space-y-3 text-sm">
+                        <h3 class="font-bold text-montanoAzul text-sm md:text-base flex items-center gap-2">
+                            <i class="fa-solid fa-[#1269A8] fa-scroll"></i> Desafíos de Investigación por Equipo:
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoAzul">
+                                <strong>Equipo 1: Adaptación al Medio Ambiente</strong>
+                                <p class="text-xs text-gray-600 mt-1">Comparen cómo los aztecas adaptaron el lago y los incas las altas montañas.</p>
+                            </div>
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoAmarillo">
+                                <strong>Equipo 2: Organización y Comunicación</strong>
+                                <p class="text-xs text-gray-600 mt-1">Comparen los códices aztecas con el sistema de Quipus y Chasquis incas.</p>
+                            </div>
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoVerdeGris">
+                                <strong>Equipo 3: Arquitectura y Ciudades</strong>
+                                <p class="text-xs text-gray-600 mt-1">Comparen el diseño de Tenochtitlan con la fortaleza de piedra de Machu Picchu/Cusco.</p>
+                            </div>
+                        </div>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 text-xs md:text-sm pt-2">
+                            <li>Elaboren su cuadro comparativo visual en la hoja de trabajo.</li>
+                            <li>Identifiquen 1 similitud y 2 diferencias clave entre ambos imperios.</li>
+                            <li>Preparen la presentación oral (2 minutos por equipo).</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA IV: PLENARIA & EVALUACIÓN (12 MINUTOS) -->
+                <div id="tab4" class="tab-content hidden space-y-6">
+                    <div class="bg-purple-50 border-l-4 border-montanoVerdeOliva p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> IV) Plenaria & Juego Interactivo (12 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Presentación de los Voceros Embajadores y trivia interactiva sobre aztecas e incas.
+                        </p>
+                    </div>
+
+                    <!-- Juego Interactivo: Trivia de Imperios -->
+                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                        <h3 class="font-bold text-montanoAzul mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-puzzle-piece text-montanoAmarillo"></i> Trivia Express: "Grandes Imperios de América"
+                        </h3>
+                        <div id="trivia-box" class="bg-montanoFondo p-4 rounded-lg text-center space-y-4">
+                            <p id="trivia-question" class="font-semibold text-gray-800 text-base">
+                                Cargando pregunta...
+                            </p>
+                            <div id="trivia-options" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-md mx-auto">
+                                <!-- Opciones cargadas por JS -->
+                            </div>
+                            <div id="trivia-feedback" class="font-bold text-sm h-6"></div>
+                        </div>
+                    </div>
+
+                    <!-- RÚBRICA INTERACTIVA DE EVALUACIÓN PARA LA PLENARIA -->
+                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center flex-wrap gap-2">
+                            <h3 class="font-bold text-montanoAzul text-base flex items-center gap-2">
+                                <i class="fa-solid fa-clipboard-check text-montanoVerdeGris"></i> Rúbrica de Plenaria - Aztecas e Incas
+                            </h3>
+                            <span class="text-xs bg-montanoAzul/10 text-montanoAzul px-2 py-1 rounded font-semibold">Evaluación Sumativa</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs md:text-sm border-collapse border border-gray-200">
+                                <thead>
+                                    <tr class="bg-montanoAzul text-white">
+                                        <th class="p-2 border">Criterio de Evaluación</th>
+                                        <th class="p-2 border text-center w-28">Excelente (3 pts)</th>
+                                        <th class="p-2 border text-center w-28">Satisfactorio (2 pts)</th>
+                                        <th class="p-2 border text-center w-28">En Proceso (1 pt)</th>
+                                        <th class="p-2 border text-center w-20">Punteo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-2 border font-medium">1. Dominio de Características Imperiales</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Compara con precisión la ubicación, tecnología agrícola y organización de ambos imperios.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Menciona las características pero confunde algunos elementos entre aztecas e incas.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Muestra imprecisión severa sobre las civilizaciones prehispánicas.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">2. Análisis de Adaptación Geográfica</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Explica claramente el funcionamiento e importancia de las chinampas y terrazas.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Menciona las técnicas agrícolas pero sin detallar su utilidad en el entorno.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">No logra explicar cómo se adaptaron a su entorno geográfico.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">3. Sinergia y Trabajo Cooperativo</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Todos los integrantes colaboraron activamente cumpliendo sus funciones.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Cumplieron sus funciones pero faltó integración en la presentación.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Poca organización y trabajo concentrado en un solo estudiante.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">4. Expresión Oral y Calidad de Material</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Expresión verbal fluida, volumen adecuado y material visual ordenado.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Expresión entendible pero volumen algo bajo o diagrama incompleto.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Dificultad verbal para transmitir ideas y material desorganizado.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Total Obtenido -->
+                        <div class="flex justify-between items-center pt-2 bg-gray-50 p-3 rounded-lg">
+                            <span class="font-bold text-gray-700">Punteo Total Obtenido:</span>
+                            <span id="total-score" class="text-xl font-extrabold text-montanoAzul">12 / 12 pts</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-montanoAzul text-white text-center py-3 text-xs mt-auto">
+        <p>Colegio Montano &copy; 2027 - Pizarra Digital Interactiva para el Aula Presencial</p>
+    </footer>
+
+    <!-- LÓGICA DE INTERACTIVIDAD JAVASCRIPT -->
+    <script>
+        // Cambiar entre Pestañas de la Secuencia Didáctica
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('block');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // Alternar Soluciones Desplegables
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('open');
+        }
+
+        // Función Pantalla Completa
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error al activar pantalla completa: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Actualizar Punteo de la Rúbrica
+        function updateScore() {
+            const selects = document.querySelectorAll('.rubric-score');
+            let total = 0;
+            selects.forEach(select => {
+                total += parseInt(select.value);
+            });
+            document.getElementById('total-score').innerText = total + " / 12 pts";
+        }
+
+        // TRIVIA INTERACTIVA AZTECAS E INCAS
+        const triviaData = [
+            {
+                q: "¿Qué técnica agrícola ingeniosa inventaron los aztecas para cultivar sobre el lago de Texcoco?",
+                options: [
+                    "Terrazas en laderas de montaña",
+                    "Chinampas (huertos flotantes)",
+                    "Canales subterráneos de desierto",
+                    "Invernaderos de cristal"
+                ],
+                correct: 1
+            },
+            {
+                q: "¿Qué sistema utilizaban los incas para registrar datos numéricos y contabilidad mediante cuerdas con nudos?",
+                options: [
+                    "Códices de papel de amate",
+                    "Hieroglifos de piedra",
+                    "Quipus",
+                    "Tablas de arcilla"
+                ],
+                correct: 2
+            },
+            {
+                q: "¿Cómo se llamaba la majestuosa capital del Imperio Inca ubicada en la cordillera de los Andes?",
+                options: [
+                    "Tenochtitlan",
+                    "Cusco",
+                    "Tikal",
+                    "Chichén Itzá"
+                ],
+                correct: 1
+            },
+            {
+                q: "El hábito Montano de 'Comenzar con un fin en mente' se observa en los aztecas e incas cuando:",
+                options: [
+                    "Planificaron y diseñaron complejas obras de ingeniería para cultivar e integrar sus vastos territorios.",
+                    "Construían sin medir el espacio ni las necesidades del pueblo.",
+                    "Abandonaban las cosechas antes del tiempo de recolección.",
+                    "No organizaban la distribución de recursos en su sociedad."
+                ],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadTrivia() {
+            const q = triviaData[currentQuestion];
+            document.getElementById('trivia-question').innerText = q.q;
+            const optionsDiv = document.getElementById('trivia-options');
+            optionsDiv.innerHTML = '';
+            document.getElementById('trivia-feedback').innerText = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white hover:bg-montanoAzul hover:text-white border border-montanoAzul text-montanoAzul font-medium py-2 px-3 rounded-lg text-xs md:text-sm transition shadow-sm";
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(idx);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIdx) {
+            const q = triviaData[currentQuestion];
+            const feedback = document.getElementById('trivia-feedback');
+            if (selectedIdx === q.correct) {
+                feedback.className = "font-bold text-sm text-green-600";
+                feedback.innerText = "¡Excelente! Comprendes el gran legado de los imperios azteca e inca.";
+            } else {
+                feedback.className = "font-bold text-sm text-red-500";
+                feedback.innerText = "¡Inténtalo de nuevo! Repasa las diferencias y tecnologías de cada imperio.";
+            }
+
+            setTimeout(() => {
+                currentQuestion = (currentQuestion + 1) % triviaData.length;
+                loadTrivia();
+            }, 2000);
+        }
+
+        // Inicialización al cargar la página
+        window.onload = function() {
+            loadTrivia();
+            updateScore();
+        };
+    </script>
+</body>
+</html>
